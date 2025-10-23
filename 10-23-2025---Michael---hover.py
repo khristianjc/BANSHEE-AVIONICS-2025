@@ -22,7 +22,7 @@ while not vehicle.armed:
     time.sleep(1)
 
 print("Taking off!")
-target_altitude = 10
+target_altitude = 2
 vehicle.simple_takeoff(target_altitude)
 
 # Wait until the vehicle reaches the target altitude
