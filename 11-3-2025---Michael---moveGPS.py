@@ -52,7 +52,7 @@ def get_location_metres(original_location, dNorth, dEast, alt):
     return LocationGlobalRelative(new_lat, new_lon, alt)
 
 # -------------------- MAIN SEQUENCE --------------------
-target_altitude = 10
+target_altitude = 2
 
 # Takeoff
 arm_and_takeoff(target_altitude)
@@ -65,7 +65,7 @@ print(f" Longitude: {home_location.lon}")
 print(f" Altitude: {home_location.alt}")
 
 # Move 10 m North from home, stay at 10 m altitude
-target_location = get_location_metres(home_location, dNorth=10, dEast=0, alt=target_altitude)
+target_location = get_location_metres(home_location, dNorth=3, dEast=0, alt=target_altitude)
 print("\nFlying 10 meters north of takeoff point...")
 vehicle.simple_goto(target_location)
 
