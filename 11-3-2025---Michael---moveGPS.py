@@ -7,14 +7,6 @@ connection_string = 'tcp:127.0.0.1:5762'
 print("Connecting to vehicle...")
 vehicle = connect(connection_string, wait_ready=True)
 
-# --- Connect to Pixhawk via USB cable ---
-# connection_string = (example) 'COM14'
-# vehicle = connect(connection_string, baud=57600, wait_ready=True)
-
-# --- Connect to Pi ---
-# connection_string = (example) '/dev/ttyAMA0'
-# vehicle = connect(connection_string, baud=57600, wait_ready=True)
-
 # -------------------- ARM AND TAKEOFF FUNCTION --------------------
 def arm_and_takeoff(target_altitude):
     print("\nArming motors...")
@@ -39,7 +31,7 @@ def arm_and_takeoff(target_altitude):
         if alt >= target_altitude * 0.95:
             print("Reached target altitude")
             break
-        time.sleep(1)
+        time.sleep(5)
 
 # -------------------- CALCULATE RELATIVE GPS COORDINATE --------------------
 def get_location_metres(original_location, dNorth, dEast, alt):
@@ -52,7 +44,7 @@ def get_location_metres(original_location, dNorth, dEast, alt):
     return LocationGlobalRelative(new_lat, new_lon, alt)
 
 # -------------------- MAIN SEQUENCE --------------------
-target_altitude = 2
+target_altitude = 1.5
 
 # Takeoff
 arm_and_takeoff(target_altitude)
@@ -64,19 +56,19 @@ print(f" Latitude: {home_location.lat}")
 print(f" Longitude: {home_location.lon}")
 print(f" Altitude: {home_location.alt}")
 
-# Move 10 m North from home, stay at 10 m altitude
+# Move 3 m North from home, stay at 1.5 m altitude
 target_location = get_location_metres(home_location, dNorth=3, dEast=0, alt=target_altitude)
-print("\nFlying 10 meters north of takeoff point...")
+print("\nFlying 3 meters north of takeoff point...")
 vehicle.simple_goto(target_location)
 
-# Hover for 10 seconds at new location
-time.sleep(10)
+# Hover for 5 seconds at new location
+time.sleep(5)
 
 # Return to home position
 print("Returning to home location...")
 return_location = get_location_metres(home_location, dNorth=0, dEast=0, alt=target_altitude)
 vehicle.simple_goto(return_location)
-time.sleep(10)
+time.sleep(5)
 
 # Land
 print("Landing...")
