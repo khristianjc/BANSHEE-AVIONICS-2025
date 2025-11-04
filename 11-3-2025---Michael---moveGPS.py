@@ -31,7 +31,7 @@ def arm_and_takeoff(target_altitude):
         if alt >= target_altitude * 0.95:
             print("Reached target altitude")
             break
-        time.sleep(5)
+        time.sleep(10)
 
 # -------------------- CALCULATE RELATIVE GPS COORDINATE --------------------
 def get_location_metres(original_location, dNorth, dEast, alt):
@@ -61,14 +61,14 @@ target_location = get_location_metres(home_location, dNorth=3, dEast=0, alt=targ
 print("\nFlying 3 meters north of takeoff point...")
 vehicle.simple_goto(target_location)
 
-# Hover for 5 seconds at new location
-time.sleep(5)
+# Hover for 10 seconds at new location
+time.sleep(10)
 
 # Return to home position
 print("Returning to home location...")
 return_location = get_location_metres(home_location, dNorth=0, dEast=0, alt=target_altitude)
 vehicle.simple_goto(return_location)
-time.sleep(5)
+time.sleep(10)
 
 # Land
 print("Landing...")
