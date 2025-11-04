@@ -8,11 +8,11 @@ print("Connecting to vehicle...")
 vehicle = connect(connection_string, wait_ready=True)
 
 # --- Connect to Pixhawk via USB cable ---
-# connection_string = 'COM14'
+# connection_string = (example) 'COM14'
 # vehicle = connect(connection_string, baud=57600, wait_ready=True)
 
 # --- Connect to Pi ---
-# connection_string = '/dev/ttyAMA0'
+# connection_string = (example) '/dev/ttyAMA0'
 # vehicle = connect(connection_string, baud=57600, wait_ready=True)
 
 # -------------------- ARM AND TAKEOFF FUNCTION --------------------
