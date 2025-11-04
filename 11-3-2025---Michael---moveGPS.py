@@ -31,7 +31,7 @@ def arm_and_takeoff(target_altitude):
         if alt >= target_altitude * 0.95:
             print("Reached target altitude")
             break
-        time.sleep(10)
+        time.sleep(1)
 
 # -------------------- CALCULATE RELATIVE GPS COORDINATE --------------------
 def get_location_metres(original_location, dNorth, dEast, alt):
@@ -48,6 +48,7 @@ target_altitude = 1.5
 
 # Takeoff
 arm_and_takeoff(target_altitude)
+time.sleep(10)
 
 # Record home GPS location
 home_location = vehicle.location.global_frame
