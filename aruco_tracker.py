@@ -2,8 +2,12 @@ import cv2
 import cv2.aruco as aruco
 import numpy as np
 
-# Works on Pyton 3.9.0 and OpenCV 4.7.0
-# https://chev.me/arucogen/
+# Works on Pyton 3.9.0, OpenCV 4.7.0, and NumPy 1.25.2
+# Generate Aruco Marker: https://chev.me/arucogen/
+
+# --- TO INSTALL OPENCV AND NUMPY --- 
+#   pip install numpy==1.25.2
+#   pip install opencv-contrib-python==4.7.0.72
 
 # --- Camera calibration ---
 camera_matrix = np.array([[600, 0, 320],
