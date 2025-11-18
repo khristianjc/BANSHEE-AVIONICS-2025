@@ -6,8 +6,7 @@ import numpy as np
 # Generate Aruco Marker: https://chev.me/arucogen/
 
 # --- TO INSTALL OPENCV AND NUMPY --- 
-#   pip install numpy==1.25.2
-#   pip install opencv-contrib-python==4.7.0.72
+#   pip install opencv-contrib-python
 
 # --- Camera calibration ---
 camera_matrix = np.array([[600, 0, 320],
