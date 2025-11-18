@@ -84,7 +84,7 @@ def send_ned_velocity(vx, vy, vz, duration=1):
 # -------------------- LANDING WITH ARUCO CENTERING --------------------
 def land_on_aruco():
     cap = cv2.VideoCapture(0)
-    aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_50)
+    aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_7X7_50)
     parameters = cv2.aruco.DetectorParameters_create()
 
     kp = 0.002  # proportional gain for centering
