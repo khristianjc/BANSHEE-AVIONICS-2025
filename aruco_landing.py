@@ -3,7 +3,12 @@ import time
 import cv2
 import numpy as np
 from pymavlink import mavutil
+import os
+import math
+import serial.tools.list_ports
 
+
+'''
 # -------------------- CONNECT --------------------
 def find_pixhawk_port():
     """Auto-detect the Pixhawk COM port on Windows."""
@@ -19,6 +24,7 @@ def find_pixhawk_port():
     return None
 
 # -------------------- DroneKit Connection --------------------
+
 def connect_to_pixhawk():
     port = find_pixhawk_port()
     if not port:
@@ -32,7 +38,37 @@ def connect_to_pixhawk():
     except Exception as e:
         print(f"❌ Connection failed: {e}")
         return None
+'''
 
+def find_pixhawk_port():
+    """Find the Pixhawk's main MAVLink port via /dev/serial/by-id/ (Linux)."""
+    serial_links = glob.glob('/dev/serial/by-id/*')
+
+    for link in serial_links:
+        if all(x in link for x in ["Pixhawk", "if00"]):  # Main MAVLink port
+            real_path = os.path.realpath(link)
+            print(f"✅ Found Pixhawk MAVLink port: {real_path}")
+            return real_path
+
+    print("❌ No valid Pixhawk MAVLink port found!")
+    return None
+
+
+# -------------------- DroneKit Connection --------------------
+
+def connect_to_pixhawk():
+    port = find_pixhawk_port()
+    if not port:
+        return None
+
+    try:
+        print(f"🔌 Connecting to {port} at 115200 baud...")
+        vehicle = connect(port, wait_ready=True, baud=115200)
+        print("✅ Connected to Pixhawk!")
+        return vehicle
+    except Exception as e:
+        print(f"❌ Connection failed: {e}")
+        return None
 # -------------------- ARM AND TAKEOFF --------------------
 def arm_and_takeoff(target_altitude):
     print("Arming motors...")
